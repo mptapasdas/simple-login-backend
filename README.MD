@@ -14,7 +14,7 @@ npm install && npm start
 #### Routers
 
 -   auth.js
--   todo.js
+-   verify.js
 
 #### User Model
 

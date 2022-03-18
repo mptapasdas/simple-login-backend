@@ -34,6 +34,7 @@ const login = async (req, res) => {
         throw new UnauthenticatedError("wrong password");
     }
 
+    //create JWT from user model
     const token = user.createJWT();
     res.status(StatusCodes.OK).json({
         user: {

@@ -5,12 +5,6 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, UnauthenticatedError } = require("../errors");
 
 const register = async (req, res) => {
-    const { email } = req.body;
-    const tempUser = await User.findOne({ email });
-
-    if (tempUser) {
-        throw new BadRequestError("User Does Not Exist");
-    }
     const user = await User.create({ ...req.body });
     const token = user.createJWT();
     res.status(StatusCodes.CREATED).json({
@@ -24,7 +18,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-
     if (!email || !password) {
         throw new BadRequestError("Please provide email and password");
     }
